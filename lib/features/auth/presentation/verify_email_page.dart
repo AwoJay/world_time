@@ -30,7 +30,8 @@ class _VerifyEmailPageState extends ConsumerState<VerifyEmailPage> {
       if (updatedUser != null && updatedUser.emailVerified) {
         timer?.cancel(); // stop timer
         if (mounted) {
-          context.go('/home');
+          // After verification, go to login page
+          context.go('/login');
         }
       }
     });
@@ -73,6 +74,11 @@ class _VerifyEmailPageState extends ConsumerState<VerifyEmailPage> {
                     onPressed: resendEmail,
                     child: const Text("Resend Email"),
                   ),
+            const SizedBox(height: 12),
+            TextButton(
+              onPressed: () => context.go('/login'),
+              child: const Text("I've verified my email. Continue to Login"),
+            ),
           ],
         ),
       ),
